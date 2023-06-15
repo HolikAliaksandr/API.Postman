@@ -1,0 +1,1814 @@
+{
+	"info": {
+		"_postman_id": "d52e8be9-4c45-4719-891a-e4367e4a4d80",
+		"name": "Test Swagger QA Learning (Holik)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25443131"
+	},
+	"item": [
+		{
+			"name": "1. Register New User 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_user1\", jD.id);\r",
+							"\r",
+							"pm.test(\"Register Testuser1 Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let email = pm.collectionVariables.get(\"email-user1\")\r",
+							"pm.test(\"Email useer1 in response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql(email);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_user1\")\r",
+							"pm.test(\"Id user1 in response received\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" const x = Math.floor(Math.random() * 10)+Math.floor(Math.random() * 100);\r",
+							" let email=\"user\"+x+'@domain1.com'\r",
+							" pm.collectionVariables.set(\"email-user1\",email)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user1}}\",\r\n  \"password\": \"123qwe\",\r\n  \"confirm_password\": \"123qwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Register New User 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_user2\", jD.id);\r",
+							"\r",
+							"pm.test(\"Register Testuser1 Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let email = pm.collectionVariables.get(\"email-user2\")\r",
+							"pm.test(\"Email useer2 in response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql(email);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_user2\")\r",
+							"pm.test(\"Id user2 in response received\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" const x = Math.floor(Math.random() * 10)+Math.floor(Math.random() * 100);\r",
+							" let email=\"user2\"+x+'@domain1.com'\r",
+							" pm.collectionVariables.set(\"email-user2\",email)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user2}}\",\r\n  \"password\": \"123qwe\",\r\n  \"confirm_password\": \"123qwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.1 Register New User 2 (email - us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Register Testuser1 Status code is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user1}}\",\r\n  \"password\": \"123qwer\",\r\n  \"confirm_password\": \"123qwer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.1 Login user1 invalid pass",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code login user1 is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user1}}\",\r\n  \"password\": \"123qwez\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Login user1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_user1\", jD.id);\r",
+							"pm.collectionVariables.set(\"access_token_user1\", jD.token);\r",
+							"\r",
+							"pm.test(\"Status code login user1 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let email = pm.collectionVariables.get(\"email-user1\")\r",
+							"pm.test(\"Correct email user 1 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql(email);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_user1\")\r",
+							"pm.test(\"Correct id user1 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user1}}\",\r\n  \"password\": \"123qwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1 Login user2 (invalid passw.)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token_user2\", jD.token);\r",
+							"pm.collectionVariables.set(\"id_user2\", jD.id);\r",
+							"\r",
+							"pm.test(\"Status code login user2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token_user2\", jD.token);\r",
+							"pm.collectionVariables.set(\"id_user2\", jD.id);\r",
+							"\r",
+							"let email = pm.collectionVariables.get(\"email-user2\")\r",
+							"pm.test(\"Email useer2 is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql(email);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_user2\")\r",
+							"pm.test(\"Correct id user1 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user2}}\",\r\n  \"password\": \"123qweт\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Login user2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token_user2\", jD.token);\r",
+							"pm.collectionVariables.set(\"id_user2\", jD.id);\r",
+							"\r",
+							"pm.test(\"Status code login user2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token_user2\", jD.token);\r",
+							"pm.collectionVariables.set(\"id_user2\", jD.id);\r",
+							"\r",
+							"let email = pm.collectionVariables.get(\"email-user2\")\r",
+							"pm.test(\"Email useer2 is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql(email);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_user2\")\r",
+							"pm.test(\"Correct id user1 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{email-user2}}\",\r\n  \"password\": \"123qwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 User List (id current user)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code user list is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1 User List invalid tocken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code user list is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Pet save (new) pet1 (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_pet1\", jD.id);\r",
+							"\r",
+							"pm.test(\"Status code new pet1 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_pet1\")\r",
+							"pm.test(\"There is id pet1 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"stringo\",\r\n  \"type\": \"string\",\r\n  \"age\": 0,\r\n  \"gender\": \"string\",\r\n  \"owner_id\": 0,\r\n  \"pic\": \"string\",\r\n  \"owner_name\": \"string\",\r\n  \"likes_count\": 0,\r\n  \"liked_by_user\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1 Pet save (new) pet (invalid token us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code new pet1 is 422\", function () {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"stringo\",\r\n  \"type\": \"string\",\r\n  \"age\": 0,\r\n  \"gender\": \"string\",\r\n  \"owner_id\": 0,\r\n  \"pic\": \"string\",\r\n  \"owner_name\": \"string\",\r\n  \"likes_count\": 0,\r\n  \"liked_by_user\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Update (name, age) pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code update pet is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let id = pm.collectionVariables.get(\"id_pet1\")\r",
+							"pm.test(\"Id pet1 in response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{id_pet1}},\r\n  \"name\": \"abra-kadabra\",\r\n  \"type\": \"string\",\r\n  \"age\": 12,\r\n  \"gender\": \"string\",\r\n  \"owner_id\": {{id_user1}},\r\n  \"pic\": \"string\",\r\n  \"owner_name\": \"{{email-user1}}\",\r\n  \"likes_count\": 0,\r\n  \"liked_by_user\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8 Add pet1 commentar (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jcD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_commentar\", jcD.id);\r",
+							"\r",
+							"pm.test(\"Status code update pet is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let idc = pm.collectionVariables.get(\"id_commentar\")\r",
+							"pm.test(\"Id comentar pet1 in response received\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(idc);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"pet_id\": {{id_pet1}},\r\n  \"message\": \"new comentar\",\r\n  \"user_id\": {{id_user1}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}/comment",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Pet1 Upload Image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code upload image is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pic",
+							"type": "file",
+							"src": "/M:/1.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}/image",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 Add pet1 like (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code add petlike  is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}/like",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11. Pet1 get after edit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code editer pet1 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Commentar pet1 for useer1 is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.comments[0].message).to.eql(\"new comentar\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"New name pet1 after edit useer1 is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.pet.name).to.eql(\"abra-kadabra\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Age pet1 after edit is 12\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.pet.age).to.eql(12);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Id comment pet1 in response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var idc = pm.collectionVariables.get(\"id_commentar\")\r",
+							"    pm.expect(jsonData.comments[0].id).to.eql(parseInt(idc));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"User id (in comment pet1) in response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var idu = pm.collectionVariables.get(\"id_user1\")\r",
+							"    pm.expect(jsonData.comments[0].user_id).to.eql(parseInt(idu));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Count like pet1 is 1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.pet.likes_count).to.eql(1);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12. Pet save (new) pet2 (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_pet2\", jD.id);\r",
+							"\r",
+							"pm.test(\"Status code new pet2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let idp = pm.collectionVariables.get(\"id_pet2\")\r",
+							"pm.test(\"There is id pet2 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(idp);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"string\",\r\n  \"type\": \"string\",\r\n  \"age\": 0,\r\n  \"gender\": \"string\",\r\n  \"owner_id\": 0,\r\n  \"pic\": \"string\",\r\n  \"owner_name\": \"string\",\r\n  \"likes_count\": 0,\r\n  \"liked_by_user\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13. Pet save (new) pet3 (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_pet3\", jD.id);\r",
+							"\r",
+							"pm.test(\"Status code new pet2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let idp = pm.collectionVariables.get(\"id_pet3\")\r",
+							"pm.test(\"There is id pet3 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(idp);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"string\",\r\n  \"type\": \"string\",\r\n  \"age\": 0,\r\n  \"gender\": \"string\",\r\n  \"owner_id\": 0,\r\n  \"pic\": \"string\",\r\n  \"owner_name\": \"string\",\r\n  \"likes_count\": 0,\r\n  \"liked_by_user\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14. Pet save (new) pet4 (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_pet4\", jD.id);\r",
+							"\r",
+							"pm.test(\"Status code new pet2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let idp = pm.collectionVariables.get(\"id_pet4\")\r",
+							"pm.test(\"There is id pet4 in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(idp);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"string\",\r\n  \"type\": \"string\",\r\n  \"age\": 0,\r\n  \"gender\": \"string\",\r\n  \"owner_id\": 0,\r\n  \"pic\": \"string\",\r\n  \"owner_name\": \"string\",\r\n  \"likes_count\": 0,\r\n  \"liked_by_user\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "15. Pets list usre1 (4 pets)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"List pets after delit pet1 is 4\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.total).to.eql(4);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": {{id_user1}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "16. Add pet2 like (us2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code add petlike  is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}/like",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "17 Add pet3 commentar (us2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jcD = pm.response.json();\r",
+							"pm.collectionVariables.set(\"id_commentar\", jcD.id);\r",
+							"\r",
+							"pm.test(\"Status code update pet is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let idc = pm.collectionVariables.get(\"id_commentar\")\r",
+							"pm.test(\"Id comentar pet1 in response received\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(idc);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user2}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"pet_id\": {{id_pet3}},\r\n  \"message\": \"new comentar\",\r\n  \"user_id\": {{id_user2}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet3}}/comment",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet3}}",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "18. Pets list after editer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code pet list  is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"List pets after delit pet1 is 1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.total).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": {{id_user1}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19.1 Delete pet1 (us2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet1 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19. Delete pet1 (us1)(com.+like)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet1 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet1}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "20.1 Delete pet2  (us2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet2}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "20. Delete pet2  (us1)(+like)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet2}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21.1 Delete pet3  (us2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet3 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet3}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21. Delete pet3  (us1)(+comm.)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet3 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet3}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "22.1 Delete pet4  (us2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet3 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet4}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "22. Delete pet4  (us1)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete pet3 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet/{{id_pet4}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{id_pet4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "23. Pets list after delete pets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code pet list  is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": {{id_user1}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/pets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "24. Delete user2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete user2 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user2}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{id_user2}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{id_user2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "25. Delete user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code delete user1 is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Empty response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token_user1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/{{id_user1}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{id_user1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// проверка наличия самих заголовков в ответе",
+					"pm.test(\"Date header is present\", () => {",
+					"  pm.response.to.have.header(\"Content-Type\");",
+					"});",
+					"pm.test(\"Server header is present\", () => {",
+					"  pm.response.to.have.header(\"Content-Type\");",
+					"});",
+					"pm.test(\"Content-lenght header is present\", () => {",
+					"  pm.response.to.have.header(\"Content-Type\");",
+					"});",
+					"pm.test(\"Content-type header is present\", () => {",
+					"  pm.response.to.have.header(\"Content-Type\");",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://34.141.58.52:8000",
+			"type": "string"
+		},
+		{
+			"key": "access_token_user1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "access_token_user2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_user1",
+			"value": ""
+		},
+		{
+			"key": "id_user2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_pet1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_pet2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_pet3",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_pet4",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email-user1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email-user2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_commentar",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_comment",
+			"value": ""
+		}
+	]
+}
